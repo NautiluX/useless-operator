@@ -1,0 +1,7 @@
+apiVersion: useless.useless.io/v1alpha1
+kind: UselessObject
+metadata:
+  name: uselessobject-sample
+spec:
+  # Add fields here
+  foo: bar

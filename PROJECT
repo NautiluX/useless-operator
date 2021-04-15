@@ -1,0 +1,11 @@
+domain: useless.io
+layout: go.kubebuilder.io/v2
+projectName: useless-operator
+repo: github.com/NautiluX/useless-operator
+resources:
+- group: useless
+  kind: UselessObject
+  version: v1alpha1
+version: 3-alpha
+plugins:
+  go.sdk.operatorframework.io/v2-alpha: {}

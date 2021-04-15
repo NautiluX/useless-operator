@@ -1,0 +1,24 @@
+# permissions for end users to edit uselessobjects.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: uselessobject-editor-role
+rules:
+- apiGroups:
+  - useless.useless.io
+  resources:
+  - uselessobjects
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - useless.useless.io
+  resources:
+  - uselessobjects/status
+  verbs:
+  - get
