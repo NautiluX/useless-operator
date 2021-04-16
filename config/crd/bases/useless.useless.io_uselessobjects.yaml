@@ -36,13 +36,17 @@ spec:
         spec:
           description: UselessObjectSpec defines the desired state of UselessObject
           properties:
-            lastUpdatedAt:
-              description: Foo is an example field of UselessObject. Edit UselessObject_types.go
-                to remove/update
+            uselessGuid:
               type: string
           type: object
         status:
           description: UselessObjectStatus defines the observed state of UselessObject
+          properties:
+            lastUpdatedAt:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              type: string
           type: object
       type: object
   version: v1alpha1

@@ -28,6 +28,7 @@ type UselessObjectSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
+	UselessGuid string `json:"uselessGuid,omitempty"`
 }
 
 // UselessObjectStatus defines the observed state of UselessObject

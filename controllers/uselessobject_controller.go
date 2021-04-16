@@ -18,9 +18,10 @@ package controllers
 
 import (
 	"context"
-	"time"
+	"fmt"
 
 	"github.com/go-logr/logr"
+	"github.com/lithammer/shortuuid/v3"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -49,16 +50,26 @@ func (r *UselessObjectReconciler) Reconcile(req ctrl.Request) (ctrl.Result, erro
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	utc, _ := time.Now().UTC().MarshalText()
 
-	uselessCr.Status.LastUpdatedAt = string(utc)
+	if uselessCr.Spec.UselessGuid == "" {
+		uselessCr.Spec.UselessGuid = shortuuid.New()
+	}
 
-	err = r.Status().Update(context.TODO(), &uselessCr)
+	err = r.Update(context.TODO(), &uselessCr)
+	if err != nil {
+		return ctrl.Result{}, err
+	}
+
+	err = CallUndocumentedExternalApi(uselessCr.Spec.UselessGuid)
 	if err != nil {
 		return ctrl.Result{}, err
 	}
 
 	return ctrl.Result{}, nil
+}
+
+func CallUndocumentedExternalApi(guid string) error {
+	return fmt.Errorf("This useless API always fails!")
 }
 
 func ignoreStatusUpdatePredicate() predicate.Predicate {
